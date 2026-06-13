@@ -1,0 +1,41 @@
+---
+import Head from "@components/Head.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Pagefind from "@components/PageFind.astro";
+import { SITE } from "@consts";
+
+type Props = {
+  title: string;
+  description: string;
+};
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <Head title={`${title} | ${SITE.TITLE}`} description={description} />
+  </head>
+  <body class="relative pt-1">
+    <div class="fixed top-0 left-0 right-0 h-1 z-[100] flex">
+      <div class="h-full w-1/2 bg-[#00aeef]"></div>
+      <div class="h-full w-1/2 bg-[#ed1c24]"></div>
+    </div>
+    <noscript>
+      <style>
+        .animate{
+          opacity:1;
+          translate: var(--tw-translate-x) calc(var(--spacing) * 0);
+        }
+      </style>
+    </noscript>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <Pagefind />
+  </body>
+</html>
